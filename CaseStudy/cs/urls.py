@@ -3,7 +3,7 @@ from . import views
 
 #URLConfig
 urlpatterns = [
-
+    path('casestudy/', views.home_view),
     path('delete/', views.delete, name = 'delete'),
     path('dates/', views.get_dates, name = 'get_dates'),
     path('niq/', views.getNonInvQuote, name = 'getNonInvQuote'),
