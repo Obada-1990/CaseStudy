@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from externalScript import getMaxMinDates, plotDataA, plotDataB, getNonInvestmentQuote
 
+def home_view(request):
+        return render(request, 'website.html')
+    
 def get_dates(request):
     if request.method == 'POST':
         dates = getMaxMinDates()
