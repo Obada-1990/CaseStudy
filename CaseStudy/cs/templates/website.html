@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <title>Case Study</title>
+       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> 
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1 class = "mainTitle">Case Study</h1>
+
+        <form action="{% url 'get_dates' %}" method="POST">
+            <div class="form-group">
+                {% csrf_token %} 
+                <label class = "dates_Label">Get max & min dates in data set</label>
+                <button class = "btn btn-primary", id = "dates_Btn", type="submit", name = "dates">get dates </button>
+            </div>
+        </form>
+
+        <form action="{% url 'plot_dataA' %}" method="GET">
+            <div class="form-group"></div>
+                <label class = "plotA_Label">plot average daily trading volume per title in ascending order.</label>
+                <button class = "btn btn-primary", id = "plotA_Btn", type="submit">plot data A</button>
+            </div>
+        </form>
+
+        <form  action="{% url 'plot_dataB' %}"  method="POST">
+            {% csrf_token %} <!--!to prevent cross-site request forgery attacks. -->
+            <div class="form-group">
+                <label class = "TitelZahl_Label">TitelZahl</label>
+                <input class = "input_T", type="text" name="titel_zahl"> 
+            </div>
+            <div class="form-group">
+                <label class = "fondsVolumen_Label">FondsVolumen</label>
+                <input class = "input_F", type="text" name="fond_volumen">
+            </div>
+            <button class = "btn btn-primary", id = "plotB" , type="submit">plot data B</button>
+        </form>  
+
+        <form action="{% url 'getNonInvQuote' %}" method="GET">
+            <div class="form-group"></div>
+                <label class = "NIQ_Label">GET NonInvestmentQuote.</label>
+                <button class = "btn btn-primary", id = "NIQ_Btn", type="submit">get NIQ</button>
+            </div>
+        </form>
+
+        <form  action="{% url 'delete' %}" method="POST">
+            {% csrf_token %} 
+            <input class = "btn btn-danger",  type="submit" value="Delete" >
+        </form>  
+        
+        <h1 class = result_date> 
+        {% if data_dates %}
+            {{ data_dates }}
+        {% elif data_NIQ %}   
+            {{data_NIQ}}
+        {% endif %}
+        </h1>
+        
+    </body>
+</html>
+
