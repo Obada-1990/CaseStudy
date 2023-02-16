@@ -1,0 +1,92 @@
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+    border: 2px solid #f71313;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+.card-one-position{
+    position: absolute;
+    top: 30%;
+    left: -20%;
+    transform: translate(-54%, 10%);
+  }
+
+.card-two-position{
+    border-color: #0bdd40;
+    position: absolute;
+    top: 30%;
+    left: -10%;
+    transform: translate(-97%, 20%);
+  }
+
+.card-three-position{
+    position: absolute;
+    top: 30%;
+    left: -10%;
+    transform: translate(-97%, 20%);
+  }
+
+.card-four-position{
+    position: absolute;
+    top: 30%;
+    left: -10%;
+    transform: translate(-97%, 50%);
+  }
+
+.card-header {
+    background-color: #348ae7;
+    color: #0e0d0d;
+    border-radius: 10px 10px 0 0;
+    font-family: Georgia, serif;
+  }
+  
+.card-body {
+    padding: 20px;
+  }
+
+.form-label {
+    font-weight: bold;
+    font-family: Georgia, serif;
+  }
+
+.mainTitle{
+    color: slategray;
+    margin-left: 1100px;
+    margin-top: 30px;
+    font-size: 70px;
+    font-weight: bold;
+    font-family: Georgia, serif;
+}
+
+.card-title{
+    font-family: Georgia, serif;
+}
+
+/*validation*/
+input:valid {
+    border: 2px solid rgb(92, 182, 92);
+}
+
+input:invalid {
+    border: 2px solid rgb(238, 78, 78);
+}
+
+
+/*results*/
+.results{
+    font-size: 20px;
+    color: black;
+    margin-left: 1200px;
+    margin-top: -60px;
+    font-family: Georgia, serif;
+    font-size: 35px;
+}  
+
+/*delete*/
+.btn-danger{
+    margin-left: 2100px;
+    margin-top: 120px;
+    font-family: Georgia, serif;
+}

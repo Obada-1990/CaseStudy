@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+       <title>Case Study</title>
+       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> 
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1 class = "mainTitle">Case Study</h1>
+          <!------------------------------  Max&Min Dates--------------------------->
+          <div class="card card-one-position">
+            <div class="card-header">
+              <h3 class="card-title">Max&Min dates </h3>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'get_dates' %}" method="POST">
+                {% csrf_token %} 
+                <div class="mb-3">
+                  <label for="input1" class="form-label">Max&Min dates in the data set</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mx-2" name="dates">m&m dates</button>
+                </div>
+              </form>
+            </div>
+        </div>
+        <!--------------------------------- plot_dataA -------------------------------->
+          <div class="card card-two-position">
+            <div class="card-header">
+              <h3 class="card-title">Plot A</h3>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'plot_dataA' %}" method="GET">
+                {% csrf_token %} 
+                <div class="mb-3">
+                  <label for="input1" class="form-label">Tägliche Handelsvolumen über die geamte Zeitspanne</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mx-2" >plot A</button>
+                </div>
+              </form>
+            </div>
+        </div>  
+        <!------------------------------  Heatmap & Plot B --------------------------->
+        <div class="card card-three-position">
+            <div class="card-header">
+              <h3 class="card-title">Heatmap & Plot B</h3>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'plot_dataB_or_hm' %}"  method="POST">
+                {% csrf_token %} <!--!to prevent cross-site request forgery attacks. -->
+                <div class="mb-3">
+                  <label for="input1" class="form-label">TitelZahl</label>
+                  <input type="number" class="form-control" id="input1" name="titel_zahl" pattern="[0-9]+" required>
+                </div>
+                <div class="mb-3">
+                  <label for="input2" class="form-label">FondsVolumen</label>
+                  <input type="number" class="form-control" id="input2" name="fond_volumen" pattern="[0-9]+" required>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mx-2" name="plot_B">plot B</button>
+                  <button type="submit" class="btn btn-primary mx-2" name="hm">heatmap</button>
+                </div>
+              </form>
+            </div>
+        </div>
+         <!---------------------------------Get NonInvestmentQuote-------------------------------->
+         <div class="card card-four-position">
+            <div class="card-header">
+              <h3 class="card-title">NonInvestmentQuote</h3>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'getNonInvQuote' %}" method="GET">
+                {% csrf_token %} 
+                <div class="mb-3">
+                  <label for="input1" class="form-label">Get NonInvestmentQuote</label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary mx-2" name="dates">get NIQ</button>
+                </div>
+              </form>
+            </div>
+        </div>
+         <!--------------------------- Delete Butto -------------------------------->
+         <form  action="{% url 'delete' %}" method="POST">
+            {% csrf_token %} 
+            <input class = "btn btn-danger",  type="submit" value="Delete" >
+        </form>  
+        <!-----------------------------render results------------------------------->
+        <h1 class = results> 
+            {% if data_dates %}
+                {{ data_dates }}
+            {% elif data_NIQ %}   
+                {{data_NIQ}}
+            {% endif %}
+        </h1>
+        <!--------------------------------------------------------------------->
+    </body>
+</html>
+
