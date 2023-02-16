@@ -9,8 +9,6 @@ from collections import defaultdict
 #**************************************#
             #load data
 #**************************************#
-#directory = './testFiles' 
-directory = './archive/Stocks'
 pureData = {}
 def prepare_data(directory):
     files = [f for f in os.listdir(directory) if f.endswith('.txt')]
@@ -174,34 +172,3 @@ def get_hm(fondsVolumen: int, titelZahl: int):
     #plt.show()
     plt.close()
     
-
-#**************************************************************#
-            #Heatmap for values belwo threshold
-#**************************************************************#
-def get_hm_below_th(fondsVolumen: int, titelZahl: int):
-        plot_data = getPlotData()
-        averages =[round(x) for x in plot_data.values()] # get averages fro dic and round them 
-        sortedAverages = sorted(averages, reverse=False) #sort the list of averages
-        threshold = fondsVolumen / titelZahl
-        averages_below_threshold =[avergae for avergae in sortedAverages if avergae <= threshold] #get averagegs below threshold
-        list_len = len(averages_below_threshold)
-        num_rows = int(np.sqrt(list_len))
-        rest= list_len%num_rows
-        while rest > 0:
-            averages_below_threshold += [0]
-            list_len = len(averages_below_threshold)
-            num_rows = int(np.sqrt(list_len))
-            rest= list_len%num_rows
-        num_cols = int(np.ceil(list_len/num_rows))     
-        averages_below_th_array = np.array(averages_below_threshold).reshape(num_rows, num_cols) # rehshape the array.In this case(84, 86)
-        max_value = np.max(averages_below_th_array) #minvalue must be less than or equal to maxvalue in the array
-        fig, hm = plt.subplots(figsize=(30, 20)) 
-        hm=sns.heatmap(averages_below_th_array, cmap="Reds", vmin=max_value,  annot=False, fmt=".0f", cbar=False)
-        hm=sns.heatmap(averages_below_th_array, cmap="RdBu", vmax=threshold, center=0, annot=False, fmt=".0f", cbar=False)
-        plt.savefig("plot_4.png")
-        #plt.show()
-        plt.close()
-
-
-#prepare_data(directory)
-#get_hm(2000000000,200)
