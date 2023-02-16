@@ -2,7 +2,6 @@ from django.apps import AppConfig
 from externalScript import prepare_data
 from termcolor import colored
 
-#directory = './testFiles' 
 directory = './archive/Stocks'
 
 class CsConfig(AppConfig):
